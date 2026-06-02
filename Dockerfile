@@ -7,7 +7,7 @@ WORKDIR /wheels
 
 # Install build deps for building wheels
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential gcc \
+    && apt-get install -y --no-install-recommends build-essential gcc libssl-dev libffi-dev python3-dev cargo \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /wheels/requirements.txt
@@ -22,7 +22,7 @@ ENV PORT=8809
 
 # Minimal runtime deps
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates \
+    && apt-get install -y --no-install-recommends ca-certificates libssl-dev libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
